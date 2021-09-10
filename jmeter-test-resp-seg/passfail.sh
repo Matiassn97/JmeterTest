@@ -20,4 +20,4 @@ else echo "reporting:
 echo "services:
 - module: shellexec
   post-process:
-  - "$JMETER_HOME"/bin/jmeter.bat -Jjmeter.save.saveservice.assertion_results_failure_message=false -Jjmeter.reportgenerator.overall_granularity=15000 -Jjmeter.reportgenerator.report_title=%JOB_NAME% -g ${TAURUS_ARTIFACTS_DIR}/kpi.jtl -o ${TAURUS_ARTIFACTS_DIR}/dashboard" >>passfail.yaml
+  - jmeter.sh -Jjmeter.save.saveservice.assertion_results_failure_message=false -Jjmeter.reportgenerator.overall_granularity=15000 -Jjmeter.reportgenerator.report_title=%JOB_NAME% -g "'${TAURUS_ARTIFACTS_DIR}'"/kpi.jtl -o "'${TAURUS_ARTIFACTS_DIR}'"/dashboard" >>passfail.yaml
