@@ -1,0 +1,10 @@
+reporting: 
+- module: passfail 
+  criteria: 
+    Se supero el tiempo maximo del 95 percentil (300ms): p95 of GetAlias>300ms, continue as failed
+    No se llego a la cantidad especificada de requests (900): hits of GetAlias<900, continue as failed    
+    Se supero el procentaje maximo de errores (0%): fail>0%, continue as failed
+services:
+- module: shellexec
+  post-process:
+  - jmeter.sh -Jjmeter.save.saveservice.assertion_results_failure_message=false -Jjmeter.reportgenerator.overall_granularity=15000 -Jjmeter.reportgenerator.report_title=QA/test-bzt-pipeline -g ${TAURUS_ARTIFACTS_DIR}/kpi.jtl -o ${TAURUS_ARTIFACTS_DIR}/dashboard
